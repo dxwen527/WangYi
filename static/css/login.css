@@ -1,0 +1,273 @@
+
+* {
+    margin: 0 auto;
+}
+
+#top {
+    height: auto;
+    width: 100%;
+}
+
+#top .header {
+    height: 100px;
+    width: 1000px;
+    background: url(/static/img/1.png) no-repeat center left;
+}
+
+#top .header img {
+    float: right;
+}
+
+#container {
+    height: 520px;
+    width: 100%;
+    background: url(http://haitao.nos.netease.com/it2ai5dx42_1920_520.jpg?imageView&thumbnail=1920x0&quality=90) no-repeat left;
+    background-position: center top;
+    background-position-x: 50%;
+    position: relative;
+}
+
+#container .center {
+    position: absolute;
+    height: 354px;
+    width: 500px;
+    border: 1px solid whitesmoke;
+    left: 49%;
+    top: 80px;
+    background: #fff;
+}
+
+#container .center .left {
+    float: left;
+    height: 354px;
+    width: 350px;
+    position: relative;
+}
+
+#container .center .left h3 {
+    margin-left: 40px;
+    padding: 30px 0px;
+}
+
+#username {
+    display: block;
+    height: 30px;
+    width: 220px;
+    padding-left: 40px;
+}
+
+#pwd {
+    display: block;
+    height: 30px;
+    width: 220px;
+    margin-top: 20px;
+    padding-left: 40px;
+}
+
+.user_img img {
+    height: 30px;
+    width: 30px;
+}
+
+.user_img b {
+    display: inline-block;
+    font-weight: normal;
+    color: #ccc;
+    position: absolute;
+    padding: 8px 0;
+}
+
+.user_img {
+    position: absolute;
+    top: 91px;
+    left: 38px;
+    border-right: 1px solid #ccc;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.pwd_img img {
+    height: 30px;
+    width: 30px;
+}
+
+.pwd_img b {
+    display: inline-block;
+    font-weight: normal;
+    color: #ccc;
+    position: absolute;
+    padding: 8px 0;
+}
+
+.pwd_img {
+    position: absolute;
+    top: 155px;
+    left: 38px;
+    border-right: 1px solid #ccc;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.div {
+    margin-left: 0px;
+    height: 15px;
+    width: 220px;
+    padding: 20px 0px 20px 44px;
+    color: #ccc;
+    position: relative;
+}
+
+#container .center .left .div #prompt {
+    position: absolute;
+    height: 15px;
+    width: 240px;
+    padding: 0px;
+    top: 60%;
+    margin: 0px;
+    text-align: left;
+    color: red;
+    background: url(/static/img/close.png) no-repeat left;
+    background-size: contain;
+    margin-left: 20px;
+    padding-left: 20px;
+    display: none;
+    margin: 0;
+}
+
+#checkbox {
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+    float: left;
+}
+
+.checkbox_left {
+    font-size: 12px;
+    height: 15px;
+    width: auto;
+    float: left;
+    padding-left: 10px;
+}
+
+.checkbox_right {
+    font-size: 12px;
+    float: right;
+}
+
+#btn {
+    margin-left: 44px;
+    width: 264px;
+    height: 40px;
+    background: red;
+    border: 0px;
+    border-radius: 5px;
+}
+
+#container .center .left p {
+    margin-left: 44px;
+    color: #666666;
+    font-size: 12px;
+    padding: 20px 0px;
+    text-align: center;
+}
+
+#container .center .left p a {
+    text-decoration: none;
+    color: #51b8f1;
+}
+
+#container .center .left .last {
+    width: 350px;
+    height: auto;
+    border-top: 1px solid #ccc;
+    height: 30px;
+}
+
+#container .center .left .last span {
+    display: inline-block;
+    float: left;
+    font-size: 12px;
+}
+
+#container .center .left .last img {
+    height: 25px;
+    width: 25px;
+    padding: 0px 10px;
+    margin-top: 2px;
+}
+
+#container .center .left .last .first {
+    padding: 8px 0px;
+}
+
+#container .center .left .last .pic {
+    border-right: 1px solid #ccc;
+}
+
+#container .center .right {
+    height: 356px;
+    width: 149px;
+    float: left;
+}
+
+#container .right .right_top {
+    height: 93px;
+    width: 147px;
+    border-left: 1px solid #ccc;
+}
+
+#container .right .middle {
+    border-left: 1px solid #ccc;
+    width: 127px;
+    padding-left: 20px;
+}
+
+#container .right .right_bottom {
+    height: 151px;
+    width: 147px;
+    border-left: 1px solid #ccc;
+}
+
+.right .p1 {
+    padding-top: 20px;
+    font-size: 15px;
+    text-align: center;
+    color: #dc124e;
+}
+
+.right .p2 {
+    padding-top: 5px;
+    text-align: center;
+    color: #828282;
+}
+
+#foot {
+    height: 200px;
+    width: 100%;
+    text-align: center;
+}
+
+#foot .footer a {
+    text-decoration: none;
+    color: #666666;
+    padding-top: 50px;
+    display: inline-block;
+    padding: 50px 10px 0px 10px;
+}
+
+#foot .footer p {
+    font-size: 12px;
+    color: #999999;
+    padding-top: 10px;
+    height: 40px;
+    line-height: 28px;
+}
+
+#foot .footer p img {
+}
+
+#foot .footer p span {
+    display: inline-block;
+    height: 40px;
+}
+
