@@ -6,11 +6,12 @@
     <title></title>
     <link rel="stylesheet" href="{% static 'lib/jquery.raty.css' %}"/>
     <script src="{% static 'js/jquery-1.12.0.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/商品详情.js' %}"></script>
-    <!-- <script type="text/javascript" src="js/详情2.js" ></script>-->
     <script type="text/javascript" src="{% static 'lib/jquery.raty.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.fly.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/商品详情.js' %}"></script>
+{#    <script type="text/javascript" src="{% static 'js/详情2.js' %}" ></script>#}
+
     <script type="text/javascript">
         $.fn.raty.defaults.path = 'lib/images';
         $(function () {
@@ -318,7 +319,7 @@ border-width: 4px 4px 0;"></i></div>-->
         </ul>
     </div>
     <div class="title">
-        <a href="#">网易考拉海购</a><span>> Nutrilon 荷兰牛栏 婴儿奶粉 3段 800克/罐 3罐装 10-15个月</span>
+        <a href="#">网易考拉海购</a><span>> {{ g_detail.information }} 婴儿尿不湿 3段 800克/包 {{ g_detail.packet }} {{ g_detail.time }}</span>
     </div>
     <div class="middle">
         <div class="left">
@@ -330,11 +331,11 @@ border-width: 4px 4px 0;"></i></div>-->
                 <span class="shang">&lt;</span>
                 <div class="div">
                     <ul>
-                        <li class="red"><img src="{{ g_detail.smallimg }}"/></li>
-                        <li><img src="{{ g_detail.smallimg }}"/></li>
-                        <li><img src="{{ g_detail.smallimg }}"/></li>
-                        <li><img src="{{ g_detail.smallimg }}"/></li>
-                        <li><img src="{{ g_detail.smallimg }}"/></li>
+                        <li class="red"><img src="{{ g_detail.img1 }}"/></li>
+                        <li><img src="{{ g_detail.img1 }}"/></li>
+                        <li><img src="{{ g_detail.img1 }}"/></li>
+                        <li><img src="{{ g_detail.img1 }}"/></li>
+                        <li><img src="{{ g_detail.img1 }}"/></li>
                     </ul>
                 </div>
 
@@ -346,10 +347,10 @@ border-width: 4px 4px 0;"></i></div>-->
         </div>
         <div class="right">
             <div class="right_top">
-                <img src="{% static 'img/smallmilk2.png' %}">
-                <span>荷兰</span>
+                <img src="{{ g_detail.img1 }}">
+                <span>{{ g_detail.city }}</span>
                 <span>|</span>
-                <span>Nutrilon 荷兰牛栏</span>
+                <span>{{ g_detail.information }}</span>
                 <span class="right_top_span">
     					<i class="i1">&nbsp;自营</i>
     				    <i class="i2">跨境</i>
@@ -357,15 +358,15 @@ border-width: 4px 4px 0;"></i></div>-->
 
             </div>
             <div class="theme">
-                <span>3件装</span>
-                | Nutrilon 荷兰牛栏 婴儿奶粉 3段 800克/罐 3罐装 10-15个月
+                <span>{{ g_detail.packet }}</span>
+                | {{ g_detail.information }} 3段 800克/包 {{ g_detail.packet }} {{ g_detail.time }}
             </div>
             <div class="content">
-                千万妈咪倾心的百年品牌。注重宝宝全面的营养，给宝宝安全的呵护。挑选一款放心的奶粉，我们知道你的顾虑，所以买奶粉就要选荷兰牛栏。
+                {{ g_detail.rated }}
             </div>
             <div class="blue">
                 <span class="blue_span">限时购</span>
-                <span class="blue_span1">抢购价￥389，该商品将于今日21:00开始抢购 <i>开场提醒我</i></span>
+                <span class="blue_span1">抢购价{{ g_detail.price }}，该商品将于今日21:00开始抢购 <i>开场提醒我</i></span>
                 <span class="blue_span2">更多低价爆款</span>
                 <span class="blue_span3">
     					<i class="dot1"></i>
@@ -378,9 +379,9 @@ border-width: 4px 4px 0;"></i></div>-->
             <div class="price">
                 <div class="price_content">
                     <span class="span1">售价</span>
-                    <span class="span2">¥<i>389.00</i></span>
-                    <span class="span3">折合单价¥129.7</span>
-                    <span class="span4">参考价&nbsp;¥<i style="font-style: normal;">525.00</i></span>
+                    <span class="span2"><i>{{ g_detail.price }}</i></span>
+                    <span class="span3">折合单价{{ g_detail.each }}</span>
+                    <span class="span4">参考价&nbsp;<i style="font-style: normal;">{{ g_detail.purchase }}</i></span>
                 </div>
 
             </div>
@@ -390,14 +391,17 @@ border-width: 4px 4px 0;"></i></div>-->
                 <span class="dress_span1">杭州&nbsp;至</span>
                 <select>
                     <option>广东深圳市罗湖区</option>
+                    <option>广东深圳市南山区</option>
+                    <option>湖南长沙市岳麓区</option>
+                    <option>湖南长沙市雨花区</option>
                 </select>
-                <span class="dress_span2">订单实付满88元免运费
+                <span class="dress_span2">订单实付满{{ g_detail.goodid }}元免运费
                     <!-- <span class="span2_span3"></span>-->
     				</span>
             </div>
             <div class="fuwu">
                 <span class="fuwu_span">服务</span>
-                <span class="fuwu_span1">本商品由 自营<b style="font-weight: normal;">杭州保税3号仓</b> 发货</span>
+                <span class="fuwu_span1">本商品由 自营<b style="font-weight: normal;">{{ g_detail.addr }}</b> 发货</span>
             </div>
             <div class="tax">
                 <span class="tax_span">税费</span>
@@ -423,8 +427,8 @@ border-width: 4px 4px 0;"></i></div>-->
             <div class="star">
                 <span id="score">
                 </span>
-                <span class="star_span"><a href="#">7001人评价</a></span>
-                <span class="star_span1"><a href="#">301人晒单</a></span>
+                <span class="star_span"><a href="#">{{ g_detail.pingjia }}人评价</a></span>
+                <span class="star_span1"><a href="#">{{ g_detail.shaidan }}人晒单</a></span>
 
             </div>
             <div class="speak" style="position: relative;">
@@ -503,7 +507,8 @@ border-width: 4px 4px 0;"></i></div>-->
 
         </div>
     </div>
-</div>
 
+</div>
+</div>
 </body>
 </html>

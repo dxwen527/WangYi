@@ -1,4 +1,4 @@
-
+pwd_img
 * {
     margin: 0 auto;
 }
@@ -101,7 +101,7 @@
 
 .pwd_img {
     position: absolute;
-    top: 155px;
+    top: 140px;
     left: 38px;
     border-right: 1px solid #ccc;
     padding-right: 5px;
