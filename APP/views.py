@@ -117,7 +117,7 @@ def addcart(request):
     token = request.session.get('token')
     # 获取商品ID
     goodsid = request.GET.get('goodsid')
-    print(goodsid)
+    # print(goodsid)
     data = {}
     if token: # 登录
         # pass
@@ -165,7 +165,7 @@ def subcart(request):
 def addbag(request):
     token = request.session.get('token')
     goodsid = request.GET.get('goodsid')
-    print(goodsid)
+    # print(goodsid)
     data = {}
     if token:
         user = User.objects.get(token=token)
@@ -183,6 +183,7 @@ def addbag(request):
 def subbag(request):
     token = request.session.get('token')
     goodsid = request.GET.get('goodsid')
+
     user = User.objects.get(token=token)
     goods = GoodsDetail.objects.get(pk=goodsid)
     cart = Cart.objects.filter(user=user).filter(goods=goods).first()
@@ -192,5 +193,39 @@ def subbag(request):
         'msg':'购物车减操作成功',
         'status':1,
         'number':cart.number
+    }
+    return JsonResponse(data)
+
+
+def changecartstatus(request):
+    cartid = request.GET.get('cartid')
+    cart = Cart.objects.get(pk=cartid)
+    cart.isselect = not cart.isselect
+    cart.save()
+    data = {
+        'msg':'修改状态成功',
+        'status':1,
+        'isselect':cart.isselect
+    }
+    return JsonResponse(data)
+
+
+def changecartisall(request):
+    token = request.session.get('token')
+    user = User.objects.get(token=token)
+    carts = Cart.objects.filter(user=user)
+    # 全选取消全选
+    isall = request.GET.get('isall')
+    if isall == 'true':
+        isall = True
+    else:
+        isall = False
+
+    for cart in carts:
+        cart.isselect = isall
+        cart.save()
+    data = {
+        'msg':'全选/取消全选',
+        'status':1
     }
     return JsonResponse(data)

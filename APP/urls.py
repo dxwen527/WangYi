@@ -16,4 +16,7 @@ urlpatterns = [
     url(r'^addbag/$',views.addbag,name='addbag'), # 购物车加操作
     url(r'^subbag/$',views.subbag,name='subbag'), # 购物车减操作
 
+    url(r'^changecartstatus/$', views.changecartstatus, name='changecartstatus'),
+    url(r'^changecartisall/$', views.changecartisall, name='changecartisall'),
+
 ]

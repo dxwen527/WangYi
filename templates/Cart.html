@@ -63,11 +63,7 @@
                         <li><a href="#">考拉招聘</a></li>
                     </ul>
                 </li>
-
-
             </ul>
-
-
         </div>
     </div>
 </div>
@@ -84,7 +80,10 @@
     <div class="contant">
         <div class="car_box">
             <div class="f1">
-                <div class="div1"><input type="checkbox"/><span>全选</span></div>
+                <div class="div1">
+                    <span class="no" isall="false" style="height: 15px"></span>&nbsp;
+                    <span>全选</span>
+                </div>
                 <div class="div2">商品信息</div>
                 <div class="div3">单价(元)</div>
                 <div class="div4">数量</div>
@@ -92,62 +91,83 @@
                 <div class="div6">操作</div>
             </div>
         </div>
-        {% for cart in carts %}
-            <ul class="box2">
-                <hr>
-
-                <li class="checkbox">
-                    <input type="checkbox">
-                </li>
-                <li>
-                    <p>
-                        <img class="img" src="{{ cart.goods.img }}" alt="">
-                    </p>
-                    <p class="detail6">
-                        {{ cart.goods.information }}
-                    </p>
-                    <p class="detail7">
-                        {{ cart.goods.rated }}
-                    </p>
-                </li>
-                <li class="price1">
-                    ￥{{ cart.goods.price }}
-                </li>
-                <li class="num">
-                    <span class="jian" goodsid="{{ cart.goods.id }}">-</span>
-                    &nbsp;&nbsp;
-                    <span class="sum">
-                        {{ cart.number }}
-                    </span>
-                    &nbsp;&nbsp;
-                    <span class="jia" goodsid="{{ cart.goods.id }}">+</span>
-                </li>
-                <li class="price3">
-                    ￥{{ cart.goods.price }}
-                </li>
-                <li class="delect">
-                    <a>删除</a>
-                </li>
-
-            </ul>
-        {% endfor %}
+                {% for cart in carts %}
+                    <ul class="box2">
+                        <hr>
+                        <li class="chose" cartid="{{ cart.id }}">
+                            {% if cart.isselect %}
+                                <span class="glyphicon glyphicon-ok" id="checkbox"></span>
+                            {% else %}
+                                <span class="no" id="checkbox"></span>
+                            {% endif %}
+                        </li>
+                        <li>
+                            <p>
+                                <img class="img" src="{{ cart.goods.img }}" alt="">
+                            </p>
+                            <p class="detail6">
+                               {{ cart.goods.information }}
+                            </p>
+                            <p class="detail7">
+                                {{ cart.goods.rated }}
+                            </p>
+                        </li>
+                        <li class="price1">
+                            ￥{{ cart.goods.price }}
+                        </li>
+                        <li class="num">
+                            <span class="jian" goodsid="{{ cart.goods.id }}">-</span>
+                            &nbsp;&nbsp;
+                            <span class="sum">
+                                {{ cart.number }}
+                            </span>
+                            &nbsp;&nbsp;
+                            <span class="jia" goodsid="{{ cart.goods.id }}">+</span>
+                        </li>
+                        <li class="price3">
+                            ￥{{ cart.goods.price }}
+                        </li>
+                        <li class="delect">
+                            <a>删除</a>
+                        </li>
+                    </ul>
+                {% endfor %}
         <div style="width: 1068px; height: 40px; border: 1px solid rgb(204, 204, 204); padding: 10px; margin-top: 40px; background: rgb(248, 248, 248);">
-            <div style="width: 200px; height: 40px; float: left; font-size: 12px; line-height: 40px;"><input
-                    type="checkbox"
-                    style="display: inline-block; float: left; vertical-align: middle; margin-top: 13px;"><span
-                    style="display: inline-block; float: left; padding-left: 30px;">全选</span><span
-                    style="display: inline-block; float: left; padding-left: 30px;">删除选中商品</span></div>
+            <div style="width: 200px; height: 40px; float: left; font-size: 12px; line-height: 40px;">
+                <input type="checkbox"
+                       style="display: inline-block; float: left; vertical-align: middle; margin-top: 13px;">
+                <span style="display: inline-block; float: left; padding-left: 30px;">
+                    全选
+                </span>
+                <span style="display: inline-block; float: left; padding-left: 30px;">
+                    删除选中商品
+                </span>
+            </div>
             <a href="javascript:"
                style="height: 60px; width: 120px; text-align: center; line-height: 60px; font-size: 18px; float: right; margin-top: -10px; margin-right: -10px; color: rgb(255, 255, 255); font-weight: 600; background: rgb(227, 20, 54);">去结算</a>
-            <div style="width: 377px; height: 42px; float: right; margin-right: 30px;"><p
-                    style="height: 22px; width: 391px; font-size: 12px;"><span style="padding-left: 50px;">已选商品<b
-                    style="color: red; font-size: 16px;" class="B"></b>件</span><span
-                    style="display: inline-block; padding-left: 30px;">总价(不含运费)</span><span class="money"
-                                                                                            style="color: red; font-size: 20px; font-weight: 800; padding-left: 30px;"></span>
-            </p>
-                <p style="height: 20px; width: 391px; font-size: 12px;"><span>活动优惠：-￥0.00</span><span
-                        style="padding-left: 20px;">商品应付总计：￥</span><span style="padding-left: 20px;">商品税费：￥185.17</span>
-                </p></div>
+            <div style="width: 377px; height: 42px; float: right; margin-right: 30px;">
+                <p style="height: 22px; width: 391px; font-size: 12px;">
+                    <span style="padding-left: 50px;">
+                        已选商品
+                        <b style="color: red; font-size: 16px;" class="B"></b>件
+                    </span>
+                    <span style="display: inline-block; padding-left: 30px;">
+                        总价(不含运费)
+                    </span>
+                    <span class="money" style="color: red; font-size: 20px; font-weight: 800; padding-left: 30px;">
+
+                    </span>
+                </p>
+                <p style="height: 20px; width: 391px; font-size: 12px;">
+                    <span>活动优惠：-￥0.00</span>
+                    <span style="padding-left: 20px;">
+                        商品应付总计：￥
+                    </span>
+                    <span style="padding-left: 20px;">
+                        商品税费：￥185.17
+                    </span>
+                </p>
+            </div>
         </div>
 
 

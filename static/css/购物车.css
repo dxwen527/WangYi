@@ -509,7 +509,7 @@ ul {
     margin: 0;
     padding: 0;
 }
-.box2 .checkbox{
+.box2 #checkbox{
     position: absolute;
     left: 40px;
     top: 30px;
@@ -556,7 +556,22 @@ ul {
     left: 880px;
     top: 80px;
 }
-
+.no{
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    /*border-radius: 50%;*/
+    border: 1px solid grey;
+}
+.glyphicon-ok{
+    background: white;
+    color: grey;
+    /*border-radius: 50%;*/
+    width: 1rem;
+    height: 1rem;
+    font-size: 1rem;
+    border: 1px solid grey;
+}
 
 
 
