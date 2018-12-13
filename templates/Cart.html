@@ -7,7 +7,9 @@
     <script type="text/javascript" src="{% static 'js/jquery-1.12.0.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/购物车.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/购物车.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body style="position: relative;">
 <div id="header">
@@ -15,8 +17,13 @@
         <div class="topnext">
             <ul class="top_left">
                 <li>考拉欢迎你！</li>
-                <li class="enter"><a href="#">登入</a></li>
-                <li><a href="#">免费注册</a></li>
+                {% if token %}
+                    <li class="enter"><a href="{% url 'app:logout' %}">退出</a></li>
+                    <li><a href="{% url 'app:resign' %}">{{ username }}</a></li>
+                {% else %}
+                    <li class="enter"><a href="{% url 'app:login' %}">登入</a></li>
+                    <li><a href="{% url 'app:resign' %}">{{ username }}</a></li>
+                {% endif %}
                 <li class="top_left_last"><img src="{% static 'img/phone(1).png' %}"/><a href="#">手机考拉海沟</a></li>
             </ul>
             <ul class="top_right">
@@ -77,16 +84,53 @@
     <div class="contant">
         <div class="car_box">
             <div class="f1">
-
                 <div class="div1"><input type="checkbox"/><span>全选</span></div>
                 <div class="div2">商品信息</div>
                 <div class="div3">单价(元)</div>
                 <div class="div4">数量</div>
                 <div class="div5">金额(元)</div>
                 <div class="div6">操作</div>
-
             </div>
         </div>
+        {% for cart in carts %}
+            <ul class="box2">
+                <hr>
+
+                <li class="checkbox">
+                    <input type="checkbox">
+                </li>
+                <li>
+                    <p>
+                        <img class="img" src="{{ cart.goods.img }}" alt="">
+                    </p>
+                    <p class="detail6">
+                        {{ cart.goods.information }}
+                    </p>
+                    <p class="detail7">
+                        {{ cart.goods.rated }}
+                    </p>
+                </li>
+                <li class="price1">
+                    ￥{{ cart.goods.price }}
+                </li>
+                <li class="num">
+                    <span class="jian" goodsid="{{ cart.goods.id }}">-</span>
+                    &nbsp;&nbsp;
+                    <span class="sum">
+                        {{ cart.number }}
+                    </span>
+                    &nbsp;&nbsp;
+                    <span class="jia" goodsid="{{ cart.goods.id }}">+</span>
+                </li>
+                <li class="price3">
+                    ￥{{ cart.goods.price }}
+                </li>
+                <li class="delect">
+                    <a>删除</a>
+                </li>
+
+            </ul>
+        {% endfor %}
         <div style="width: 1068px; height: 40px; border: 1px solid rgb(204, 204, 204); padding: 10px; margin-top: 40px; background: rgb(248, 248, 248);">
             <div style="width: 200px; height: 40px; float: left; font-size: 12px; line-height: 40px;"><input
                     type="checkbox"

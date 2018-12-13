@@ -40,8 +40,8 @@
 			  <div class="topnext">
 				<ul class="top_left">
 					<li>考拉欢迎你！</li>
-					<li class="enter"><a href="#">登入</a></li>
-					<li><a href="#">免费注册</a></li>
+					<li class="enter"><a href="{% url 'app:login' %}">登入</a></li>
+					<li><a href="{% url 'app:resign' %}">免费注册</a></li>
 					<li class="top_left_last"><img src="{% static 'img/phone(1).png' %}"/><a href="#">手机考拉海沟</a></li>
 				</ul>
 				<ul class="top_right">
@@ -285,7 +285,7 @@
          	            </div>
          	    </div>
                 <ul class="page">
-            	    <li><a href="#">首页</a></li>
+            	    <li><a href="{% url 'app:index' %}">首页</a></li>
             	    <li><a href="#">今日限时购</a></li>
             	    <li><a href="#">每日上新</a></li>
             	    <li><a href="#">排行榜</a></li>

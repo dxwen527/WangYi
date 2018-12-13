@@ -25,7 +25,7 @@ SECRET_KEY = 'klar=v-f9ntinu7q318x6=($kdl8=o=cb602_4gs+a&-=i@ghx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

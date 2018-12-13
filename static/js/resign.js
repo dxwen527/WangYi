@@ -85,7 +85,7 @@ $(function () {
     var ispwd = false;
     $("#pwd").blur(function () {
         if (isTrue) {//根据布尔  判断  上一层是否正确  如果正确  则可以判断自身
-            var reg = /^[a-zA-Z]{6,16}$/
+            var reg = /^[a-zA-Z\d_]{6,12}$/A
             var pwd = $("#pwd").val();
 
             if (!reg.test(pwd)) {

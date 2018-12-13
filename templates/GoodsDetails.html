@@ -9,8 +9,9 @@
     <script type="text/javascript" src="{% static 'lib/jquery.raty.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.fly.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/商品详情.js' %}"></script>
-{#    <script type="text/javascript" src="{% static 'js/详情2.js' %}" ></script>#}
+    {#    <script type="text/javascript" src="{% static 'js/商品详情.js' %}"></script>#}
+    <script type="text/javascript" src="{% static 'js/goodsdetail.js' %}"></script>
+    {#    <script type="text/javascript" src="{% static 'js/详情2.js' %}" ></script>#}
 
     <script type="text/javascript">
         $.fn.raty.defaults.path = 'lib/images';
@@ -47,8 +48,13 @@
         <div class="topnext">
             <ul class="top_left">
                 <li>考拉欢迎你！</li>
-                <li class="enter"><a href="#">登入</a></li>
-                <li><a href="#">免费注册</a></li>
+                {% if token %}
+                    <li class="enter"><a href="{% url 'app:logout' %}">退出</a></li>
+                    <li><a href="{% url 'app:resign' %}">{{ username }}</a></li>
+                {% else %}
+                    <li class="enter"><a href="{% url 'app:login' %}">登入</a></li>
+                    <li><a href="{% url 'app:resign' %}">{{ username }}</a></li>
+                {% endif %}
                 <li class="top_left_last"><img src="{% static 'img/phone(1).png' %}"/><a href="#">手机考拉海沟</a></li>
             </ul>
             <ul class="top_right">
@@ -100,7 +106,7 @@ border-style: solid dashed dashed;
 border-width: 4px 4px 0;"></i></div>-->
     <div id="title">
         <div class="title_left">
-            <input type="text" value="        " class="search"/>
+            <input type="text" value="  " class="search"/>
             <ul class="search_nav">
                 <li>奥尔滨</li>
                 <li>咖啡</li>
@@ -113,7 +119,7 @@ border-width: 4px 4px 0;"></i></div>-->
                 <li>卸妆</li>
             </ul>
             <button class="btn"><img src="{% static 'img/btn.png' %}"/></button>
-            <button class="btn1"><img src="{% static 'img/cart.png' %}"/>购物车</button>
+            <button class="btn1"><a href="{% url 'app:cart' %}"><img src="{% static 'img/cart.png' %}"/>购物车</a></button>
             <span><img src="{% static 'img/search.png' %}"/></span>
         </div>
     </div>
@@ -205,7 +211,7 @@ border-width: 4px 4px 0;"></i></div>-->
                         <img src="{% static 'img/fruit8.jpg' %}"/>
                         <img src="{% static 'img/fruit9.jpg' %}"/>
                     </div>
-                    <span><img src="{% static 'img/fruit10.jpg' %}"/></span>
+                    <span><img src="{% static 'img/fruit10.png' %}"/></span>
                 </div>
             </div>
             <div class="listlive">
@@ -325,20 +331,20 @@ border-width: 4px 4px 0;"></i></div>-->
         <div class="left">
             <div class="left_box">
                 <img src="{{ g_detail.img }}" class="smallImg"/>
+                {#                <img src="{% static 'img/ku1.webp' %}" class="smallImg"/>#}
                 <div class="smallArea"></div>
             </div>
             <div class="fanye">
                 <span class="shang">&lt;</span>
                 <div class="div">
                     <ul>
-                        <li class="red"><img src="{{ g_detail.img1 }}"/></li>
-                        <li><img src="{{ g_detail.img1 }}"/></li>
-                        <li><img src="{{ g_detail.img1 }}"/></li>
-                        <li><img src="{{ g_detail.img1 }}"/></li>
-                        <li><img src="{{ g_detail.img1 }}"/></li>
+                        <li class="red"><img src="{{ g_detail.img }}" style="width: 70px;height: 60px"/></li>
+                        <li><img src="{{ g_detail.img }}" style="width: 70px;height: 60px"/></li>
+                        <li><img src="{{ g_detail.img }}" style="width: 70px;height: 60px"/></li>
+                        <li><img src="{{ g_detail.img }}" style="width: 70px;height: 60px"/></li>
+                        <li><img src="{{ g_detail.img }}" style="width: 70px;height: 60px"/></li>
                     </ul>
                 </div>
-
                 <span class="xia">&gt;</span>
             </div>
         </div>
@@ -366,7 +372,7 @@ border-width: 4px 4px 0;"></i></div>-->
             </div>
             <div class="blue">
                 <span class="blue_span">限时购</span>
-                <span class="blue_span1">抢购价{{ g_detail.price }}，该商品将于今日21:00开始抢购 <i>开场提醒我</i></span>
+                <span class="blue_span1">抢购价{{ g_detail.price }}￥，该商品将于今日21:00开始抢购 <i>开场提醒我</i></span>
                 <span class="blue_span2">更多低价爆款</span>
                 <span class="blue_span3">
     					<i class="dot1"></i>
@@ -379,7 +385,7 @@ border-width: 4px 4px 0;"></i></div>-->
             <div class="price">
                 <div class="price_content">
                     <span class="span1">售价</span>
-                    <span class="span2"><i>{{ g_detail.price }}</i></span>
+                    <span class="span2"><i>{{ g_detail.price }}￥</i></span>
                     <span class="span3">折合单价{{ g_detail.each }}</span>
                     <span class="span4">参考价&nbsp;<i style="font-style: normal;">{{ g_detail.purchase }}</i></span>
                 </div>
@@ -409,15 +415,17 @@ border-width: 4px 4px 0;"></i></div>-->
                 <span class="tax_span2">税费收取规则</span>
             </div>
             <div class="buy">
+                {#                 <span class="jia"><a href="#">-</a></span><input type="text" value="1" class="sum"/><span class="jian"><a href="#">+</a></span>#}
                 <div class="num">
                     <span class="num_span">数量</span>
-                    <span class="jia"><a href="#">-</a></span><input type="text" value="1" class="sum"/><span
-                        class="jian"><a href="#">+</a></span>
+                    <span class="jian" goodsid="{{ g_detail.id }}"><a>-</a></span>
+                    <input type="text" value="1" class="sum"/>
+                    <span class="jia" goodsid="{{ g_detail.id }}"><a>+</a></span>
                     <span class="num_span1">限购5件</span>
                 </div>
                 <div class="cost">
-                    <span class="cost_span1"><a href="#">立刻购买</a></span>
-                    <span class="cost_span2"><a href="javascript:">加入购物车</a></span>
+                    <span class="cost_span1"><a href="{% url 'app:cart' %}">立刻购买</a></span>
+                    <span class="cost_span2" goodsid="{{ g_detail.id }}"><a >加入购物车</a></span>
                     <div class="cue">
                         <span class="cue_span">提示:</span>
                         <span class="cue_span1">本商品不支持7天无理由退货</span>

@@ -21,14 +21,14 @@ class Goods(models.Model):
     price = models.CharField(max_length=50)
     purchase = models.CharField(max_length=50)
     act = models.CharField(max_length=50)
-    goodsid = models.CharField(max_length=20,default='')
+    goodsid = models.CharField(max_length=20)
 
 
 class GoodsDetail(models.Model):
     goodid = models.CharField(max_length=20)
     smallimg = models.CharField(max_length=50)
     img = models.CharField(max_length=50)
-    img1 = models.CharField(max_length=50,default='')
+    img1 = models.CharField(max_length=50)
     packet = models.CharField(max_length=50)
     information = models.CharField(max_length=256)
     rated = models.CharField(max_length=256)
@@ -36,30 +36,18 @@ class GoodsDetail(models.Model):
     price = models.CharField(max_length=50)
     purchase = models.CharField(max_length=50)
     act = models.CharField(max_length=50)
-    time = models.CharField(max_length=100,default='')
-    city = models.CharField(max_length=50, default='')
-    addr = models.CharField(max_length=100, default='')
-    pingjia = models.CharField(max_length=100, default='')
-    shaidan = models.CharField(max_length=100, default='')
+    time = models.CharField(max_length=100)
+    city = models.CharField(max_length=50)
+    addr = models.CharField(max_length=100)
+    pingjia = models.CharField(max_length=100)
+    shaidan = models.CharField(max_length=100)
 
-class GoodMilk(models.Model):
-    smallimg = models.CharField(max_length=50)
-    img = models.CharField(max_length=50)
-    packet = models.CharField(max_length=50)
-    information = models.CharField(max_length=256)
-    rated = models.CharField(max_length=256)
-    each = models.CharField(max_length=50)
-    price = models.CharField(max_length=50)
-    purchase = models.CharField(max_length=50)
-    act = models.CharField(max_length=50)
 
-class GoodFood(models.Model):
-    smallimg = models.CharField(max_length=50)
-    img = models.CharField(max_length=50)
-    packet = models.CharField(max_length=50)
-    information = models.CharField(max_length=256)
-    rated = models.CharField(max_length=256)
-    each = models.CharField(max_length=50)
-    price = models.CharField(max_length=50)
-    purchase = models.CharField(max_length=50)
-    act = models.CharField(max_length=50)
+
+class Cart(models.Model):
+    user = models.ForeignKey(User)
+    goods = models.ForeignKey(GoodsDetail)
+    number = models.IntegerField()
+    isselect = models.BooleanField(default=True)
+
+

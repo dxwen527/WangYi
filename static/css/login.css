@@ -79,8 +79,8 @@ pwd_img
 
 .user_img {
     position: absolute;
-    top: 91px;
-    left: 38px;
+    top: 127px;
+    left: 0px;
     border-right: 1px solid #ccc;
     padding-right: 5px;
     padding-left: 5px;
@@ -101,8 +101,8 @@ pwd_img
 
 .pwd_img {
     position: absolute;
-    top: 140px;
-    left: 38px;
+    top: 182px;
+    left: 0px;
     border-right: 1px solid #ccc;
     padding-right: 5px;
     padding-left: 5px;
